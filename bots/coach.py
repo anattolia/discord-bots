@@ -33,12 +33,29 @@ coach = {
             'temperature': 0.93, 
             'max_tokens': 100,
         },
+        'calendar_notify': {
+            'include_description': True
+        }
     },    
     'behaviors': {
         'direct_message': {                
             'response_probability': 1.0,
             'program': 'gpt3_chat', 'program_index': 0,
             'members': [404322488215142410, 606313423126528010]
+        },
+        'calendar': {
+            'channel': mcb_general,
+            'program': 'calendar_notify',
+            'minutes_before': 15,
+            'check_every': 5
+        },
+        'background': {
+            'min_minutes_idle': 1,
+            'probability_trigger': 0.25,
+            'every_num_minutes': 100,
+            'probability_skip_halflife': 50,
+            'program': 'gpt3_chat',
+            'channel': mcb_botlounge
         }
     }
 }

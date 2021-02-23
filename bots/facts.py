@@ -37,15 +37,24 @@ facts = {
     'behaviors': {
         'on_mention': {
             'response_probability': 1.0,
-            'channels': all_channels_testnet + all_channels_mc,
+            'channels': all_channels_testnet + all_channels_mc + all_channels_mcb,
             'program': 'gpt3_chat',
-            'reaction_probability': 0.35
+            'reaction_probability': 0.15,
+            'reply_probability': 1.0
         },
         'on_message': {
             'response_probability': 0.0,
             'channels': None,
             'program': 'gpt3_chat',
-            'reaction_probability': 0.1
+            'reaction_probability': 0.035
+        },
+        'background': {
+            'min_minutes_idle': 1,
+            'probability_trigger': 0.25,
+            'every_num_minutes': 100,
+            'probability_skip_halflife': 50,
+            'program': 'gpt3_chat',
+            'channel': mcb_botlounge
         }
     }
 }

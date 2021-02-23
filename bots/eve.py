@@ -9,7 +9,7 @@ eve = {
             'characters': ['Wally'],
             'chat_history': {
                 'max_history': 8, 
-                'max_age': 60*60*2
+                'max_age': 60*5
             },
             'intro': "Eve and Wally are best friends. Eve is free-spirited and adventurous, while Wally is a bit more shy. Eve sometimes gets Wally to come out of his shell, and when he does, he's always happy.", 
             'messages_pre': [
@@ -39,16 +39,25 @@ eve = {
     },    
     'behaviors': {
         'on_message': {                
-            'response_probability': 0.015,
-            'channels': all_channels_testnet + [mc_ai, mc_lounge],
+            'response_probability': 0.0,
+            'channels': all_channels_testnet + all_channels_mc + all_channels_mcb,
             'program': 'gpt3_chat',
             'reaction_probability': 0.1
         },
         'on_mention': {
             'response_probability': 1.0,
-            'channels': all_channels_testnet + [mc_ai, mc_lounge],
+            'channels': all_channels_testnet + all_channels_mc + all_channels_mcb,
             'program': 'gpt3_chat',
-            'reaction_probability': 0.35
+            'reaction_probability': 0.35,
+            'reply_probability': 1.0
+        },
+        'background': {
+            'min_minutes_idle': 1,
+            'probability_trigger': 0.25,
+            'every_num_minutes': 45,
+            'probability_skip_halflife': 20,
+            'program': 'gpt3_chat',
+            'channel': mcb_botlounge
         }
     }
 }
